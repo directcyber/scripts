@@ -23,10 +23,10 @@ q = sys.argv[1]
 numres = 0
 
 # each page is 100 results
-filename = f'shodan_raw_response_{time_now}_{urllib.parse.quote_plus(q)}.json'
+filename = f'shodan_raw_response_{time_now}_{urllib.parse.quote_plus(q)}.jsonl'
 with open(filename, 'w') as f:
 	for result in api.search_cursor(q):
-		f.write(simplejson.dumps(result))
+		f.write(simplejson.dumps(result) + "\n")
 		# numres += len(result.get('matches'))
 		numres += 1
 		print(f"found {numres} results")
